@@ -1,0 +1,13 @@
+.company_head--item {
+  opacity: 0;
+  animation: slide-up 0.7s linear forwards;
+}
+
+.company_data {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.67), rgba(25, 26, 27, 0.19)),
+    url("https://assets.website-files.com/5e865e09d8efa3310676b585/5e865e09d8efa3828776b614_Group%20Photo.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

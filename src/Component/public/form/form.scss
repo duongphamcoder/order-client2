@@ -1,0 +1,130 @@
+#form_wrapper {
+  min-height: 100vh;
+  background-color: #f8fafb;
+  display: flex;
+  align-items: center;
+  #form_image {
+    height: 500px;
+  }
+}
+
+#login_wrapper,
+#register_wrapper {
+  //   background-color: black;
+  //   height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form_title {
+  //   text-align: center;
+  font-size: 30px;
+  font-weight: 400;
+
+  span {
+    font-weight: 600;
+  }
+}
+
+.form_desc {
+  //   text-align: center;
+}
+
+.form_input {
+  padding: 15px 0;
+  .form_input--item {
+    padding: 10px 0;
+    label {
+      display: block;
+      position: relative;
+      border-bottom: 1px solid;
+      cursor: pointer;
+      span {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        text-transform: capitalize;
+        transition: all 0.2s linear;
+        font-size: 12px;
+        color: #767676;
+      }
+
+      input {
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 10px 0;
+        background-color: transparent;
+      }
+      input:focus + span,
+      .forcus {
+        top: 0;
+      }
+    }
+  }
+}
+
+.form_other {
+  display: flex;
+  justify-content: space-between;
+
+  .form_other--item {
+    a {
+      color: #767676;
+      text-transform: capitalize;
+    }
+  }
+}
+
+.form_submit {
+  margin: 20px 0;
+  button {
+    width: 100%;
+    padding: 10px;
+    color: #f8fafb;
+    font-size: 20px;
+    background-color: rgb(7, 200, 136);
+    border-radius: 5px;
+    transition: all 0.2s linear;
+    &:hover {
+      background-color: rgb(2, 168, 112);
+    }
+  }
+}
+
+.form_other,
+.form_input,
+.form_submit,
+.login_orther {
+  width: 350px;
+}
+
+.login_orther {
+  .login_orther--title {
+    text-align: center;
+  }
+
+  .login_orther--list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login_orther--item {
+    display: inline-block;
+    font-size: 45px;
+    cursor: pointer;
+    margin: 0 10px;
+  }
+
+  .login_orther--item.facebook {
+    color: rgb(69, 69, 251);
+  }
+
+  .login_orther--item.google {
+    color: rgb(247, 26, 26);
+  }
+}

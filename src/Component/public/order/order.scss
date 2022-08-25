@@ -1,0 +1,9 @@
+#order_head_wraper {
+  //   min-height: 100px;
+  background-color: var(--color-footer);
+}
+
+.order_head_text--item {
+  opacity: 0;
+  animation: slide-up 0.7s linear forwards;
+}

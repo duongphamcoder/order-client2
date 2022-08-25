@@ -1,0 +1,131 @@
+#profile_wrapper {
+  min-height: 100vh;
+  background-color: #eee;
+  padding: 20px 0;
+
+  p {
+    margin: 0;
+  }
+
+  #profile_control,
+  #profile_main--wrapper {
+    border-radius: 10px;
+    padding: 20px 0;
+    box-shadow: 0 10px 20px rgb(212, 211, 211);
+    opacity: 0;
+  }
+
+  #profile_control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    animation: slide-in 0.5s linear forwards;
+
+    #profile_image {
+      img {
+        --temp: 150px;
+        width: var(--temp);
+        height: var(--temp);
+        border-radius: 100%;
+      }
+    }
+
+    #profile_name {
+      padding: 15px 0;
+      p {
+        font-size: 18px;
+        font-weight: 600;
+        text-transform: capitalize;
+      }
+    }
+
+    #profile_btn_logout {
+      button {
+        padding: 10px 30px;
+        text-transform: uppercase;
+        font-weight: 600;
+        border: 2px solid var(--color-main);
+        color: var(--color-main);
+      }
+    }
+
+    #list_select {
+      width: 100%;
+      padding: 20px 0;
+      .select--item {
+        // background-color: aqua;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+        box-shadow: 0 1px 0 #eee;
+        cursor: pointer;
+
+        .select--item-icon,
+        .select--item-text {
+          color: rgb(107, 104, 104);
+        }
+
+        .select--item-icon {
+          font-size: 35px;
+          display: flex;
+          align-items: center;
+        }
+
+        .select--item-text {
+          text-transform: capitalize;
+          font-size: 18px;
+          font-weight: 600;
+        }
+
+        &.active {
+          .select--item-icon,
+          .select--item-text {
+            color: var(--color-main);
+          }
+        }
+      }
+    }
+  }
+
+  #profile_main--wrapper {
+    background-color: #fff;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    animation: silde-out 0.6s linear forwards;
+
+    #infor_user--wrapper {
+      .infor_user--item {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        box-shadow: 0 2px #eee;
+        &:last-child {
+          box-shadow: 0 0 0 #ffff;
+        }
+        .infor_user--item-textField {
+          width: 150px;
+          display: flex;
+          align-items: center;
+          padding: 10px 50px 10px 0;
+          margin-right: 20px;
+          text-transform: capitalize;
+          color: rgb(56, 54, 54) k;
+        }
+
+        .infor_user--item-text {
+          display: flex;
+          align-items: center;
+          color: #757575;
+        }
+      }
+    }
+
+    #setting_wrapper {
+      text-align: center;
+    }
+  }
+}

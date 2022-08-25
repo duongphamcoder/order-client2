@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap"); */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+:root {
+  --color-main: rgb(53, 184, 190);
+  --color-footer: #f5fbfc;
+}
+
+.App {
+  position: relative;
+}
+
+.btn_custom {
+  border-radius: 7px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  color: #000;
+}
+
+.btn_custom.active {
+  background-color: var(--color-main);
+  color: aliceblue;
+  border: none;
+}
+
+.btn_custom:hover {
+  opacity: 0.8;
+}
+
+.product_item {
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  padding: 10px 25px;
+  border-radius: 10px;
+  border: 1px solid rgba(53, 184, 190, 0.2);
+  background-color: #fff;
+  animation: appear_product 0.5s linear forwards;
+}
+
+.product_item span {
+  display: block;
+}
+
+.img_product {
+  width: 20%;
+}
+
+.img_product > img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.infor_product {
+  flex: 1;
+  padding: 10px 25px;
+}
+
+.infor_product_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.infor_product_head--name {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.infor_product_head--price {
+  font-size: 18px;
+  color: var(--color-main);
+}
+
+.infor_product_content {
+  padding: 10px 0;
+  color: rgb(141, 141, 141);
+  font-size: 17px;
+}
+
+.infor_product_btn_change {
+  display: flex;
+  align-items: center;
+  padding: 10px 0 0;
+}
+
+.quantity_change > input {
+  width: 50px;
+  padding: 10px;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.btn_add_to_cart {
+  padding: 0 10px;
+}
+
+.btn_add_to_cart > button {
+  padding: 10px 15px;
+}
+
+@keyframes appear_product {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+    transform-origin: center;
+  }
+  50% {
+    opacity: 0.4;
+    transform: translate(0.8);
+    transform-origin: center;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: center;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(70%);
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes silde-in {
+  0% {
+    transform: translateX(-50%);
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes silde-out {
+  0% {
+    transform: translateX(50%);
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
