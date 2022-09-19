@@ -10,7 +10,7 @@ import "./notification.scss";
 function OverlayNotification({ handleOverlay }) {
   const [products, setProducts] = useState([]);
   const [quantitys, setQuantitys] = useState();
-  const isLogin = localStorage.getItem("token");
+  const isLogin = localStorage.getItem(process.env.REACT_APP_KEY_TOKEN);
 
   // xử lý xóa sản phẩm
   const handleDeteleProduct = async (_id) => {
@@ -31,11 +31,8 @@ function OverlayNotification({ handleOverlay }) {
 
   // xử lý thanh toán
   const handlePayment = async () => {
-    const { error, message } = await axiosAuthorization.put(
-      `${process.env.REACT_APP_URL_SERVER}/cart/payment`,
-      {
-        quantitys,
-      }
+    const { error, message, result } = await axiosAuthorization.put(
+      `${process.env.REACT_APP_URL_SERVER}/cart/payment`
     );
     swal({
       icon: !error ? "success" : "error",
@@ -50,12 +47,14 @@ function OverlayNotification({ handleOverlay }) {
   };
 
   useEffect(() => {
-    axiosAuthorization
-      .get(`${process.env.REACT_APP_URL_SERVER}/cart`)
-      .then((res) => {
-        setProducts(res.result);
-        setQuantitys(res.quantitys);
-      });
+    if (isLogin) {
+      axiosAuthorization
+        .get(`${process.env.REACT_APP_URL_SERVER}/cart`)
+        .then((res) => {
+          setProducts(res.result);
+          setQuantitys(res.quantitys);
+        });
+    }
   }, []);
 
   // tính tổng tiền
@@ -69,10 +68,7 @@ function OverlayNotification({ handleOverlay }) {
     }, 0);
     return total;
   }, [quantitys, products]);
-
-  console.log("quantitys", quantitys);
-  console.log("products", products);
-
+  console.log("notify render");
   return (
     <div
       id="overlay_notification--wraper"

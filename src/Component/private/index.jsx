@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function PrivateRoute({ children }) {
   const navigate = useNavigate();
-  const isLogin = localStorage.getItem("token");
+  const isLogin = localStorage.getItem(process.env.REACT_APP_KEY_TOKEN);
 
   useEffect(() => {
     if (!isLogin) {

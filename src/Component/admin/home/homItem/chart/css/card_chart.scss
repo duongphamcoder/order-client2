@@ -1,0 +1,50 @@
+.card_chart_item {
+  box-shadow: 0 2px 5px 0 rgb(8, 7, 7);
+  margin-top: 10px;
+  p {
+    margin-bottom: 0;
+  }
+  padding: 15px;
+  //   display: flex;
+  //   flex-direction: column;
+  &.violet {
+    background: linear-gradient(60deg, #4537bf, #4134b6, #312891);
+  }
+  &.blue {
+    background: linear-gradient(60deg, #4695e2, #458fd4, #4487c2);
+  }
+  &.yellow {
+    background: linear-gradient(60deg, #e1a42c, #df9d28, #de9626);
+  }
+  &.red {
+    background: linear-gradient(60deg, #ce6262, #c75858, #c45454);
+  }
+
+  & > .card_chart_item-head {
+    .card_chart_item-title {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+    }
+  }
+
+  & > .card_chart_item-content {
+    // flex: 1;
+    height: 100px;
+    // background-color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > .card_chart_item-content-value {
+      font-size: 2rem;
+      color: #fff;
+      text-transform: uppercase;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke-width: 1px;
+    }
+
+    & > .card_chart_item-content-percent {
+      padding: 20px 20px 0;
+    }
+  }
+}

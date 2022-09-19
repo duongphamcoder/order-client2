@@ -1,0 +1,56 @@
+.card {
+  &.card_network_item {
+    height: 200px;
+    background-color: transparent;
+    border: none;
+    overflow: hidden;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    & > .card_network_item-logo {
+      height: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      &.facebook {
+        background-color: #3b5998;
+      }
+      &.twitter {
+        background-color: #00aced;
+      }
+      &.linkin {
+        background-color: #4875b4;
+      }
+    }
+
+    & > .card_network_item-desc {
+      height: 50%;
+      background-color: var(--color-admin-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      & > .card_network_item-desc-item {
+        width: 50%;
+        text-align: center;
+        padding: 0 30px;
+
+        &:first-child {
+          box-shadow: 1px 0 0 var(--color-admin-main-opacity);
+        }
+
+        .card_network_item-desc-item-value {
+          font-size: 1.3rem;
+        }
+
+        .card_network_item-desc-item-name {
+          text-transform: uppercase;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}

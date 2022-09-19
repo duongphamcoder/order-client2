@@ -1,7 +1,30 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useRef, useState } from "react";
+import { axiosAuthorization } from "../../../configJWT";
 
 function CartItem({ item, quantitys, onChangeQuantity, onDelete }) {
+  const _debouce = useRef(null);
+
+  const handleChangeQuantity = function (e) {
+    let value = e.target.value;
+    onChangeQuantity((prev) => {
+      return {
+        ...prev,
+        [item.cart_id]: value,
+      };
+    });
+    clearTimeout(_debouce.current);
+    const timeOut_id = setTimeout(async () => {
+      const cart_id = item.cart_id;
+      await axiosAuthorization.put(
+        `${process.env.REACT_APP_URL_SERVER}/cart/update-quantity`,
+        { cart_id, quantity: value }
+      );
+    }, 600);
+    _debouce.current = timeOut_id;
+  };
+
   return (
     <div
       className="overlay_notification--content--cart--item flex justify-between items-center"
@@ -26,16 +49,7 @@ function CartItem({ item, quantitys, onChangeQuantity, onDelete }) {
             type="number"
             value={quantitys[`${item.cart_id}`]}
             min={1}
-            onChange={(e) => {
-              onChangeQuantity((prev) => {
-                let value = e.target.value;
-
-                return {
-                  ...prev,
-                  [item.cart_id]: value,
-                };
-              });
-            }}
+            onChange={handleChangeQuantity}
           />
         </div>
         <div className="overlay_notification--content--cart--item-btn_delete">

@@ -23,7 +23,7 @@ function HomePage() {
 
   useEffect(() => {
     axiosClient
-      .get(`${process.env.REACT_APP_URL_SERVER}`)
+      .get(`${process.env.REACT_APP_URL_SERVER}/`)
       .then((res) => {
         console.log(res);
         setCategorys(res.categorys);
@@ -34,8 +34,6 @@ function HomePage() {
         console.log(err);
       });
   }, []);
-
-  console.log("Home", dataProduct && dataProduct[`${btnSlect}`]);
   return (
     <div id="home_wraper">
       <div id="new_message_board">

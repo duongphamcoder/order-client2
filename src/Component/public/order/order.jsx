@@ -31,24 +31,28 @@ function OrderPage() {
     axiosClient
       .get(`${process.env.REACT_APP_URL_SERVER}/product/category`)
       .then((res) => {
+        console.log(res);
         setCategorys(res.data);
-        const category_id = res.data.find((item) => item.name === slug)["_id"];
-        axiosClient
-          .get(
-            `${
-              process.env.REACT_APP_URL_SERVER
-            }/pagination?category=${category_id}&page=${searchParam.get(
-              "page"
-            )}`
-          )
-          .then((response) => {
-            console.log(response);
-            setProducts(response.data);
-            setNext(response.next);
-            setPrev(response.prev);
-          });
       });
-  }, [slug, searchParam.get("page")]);
+  }, []);
+
+  // lấy ra dữ liệu cho từng trang
+  useEffect(() => {
+    const category_id = categorys.length
+      ? categorys.find((item) => item.name === slug)["_id"]
+      : "";
+    axiosClient
+      .get(
+        `${
+          process.env.REACT_APP_URL_SERVER
+        }/pagination?category=${category_id}&page=${searchParam.get("page")}`
+      )
+      .then((response) => {
+        setProducts(response.data);
+        setNext(response.next);
+        setPrev(response.prev);
+      });
+  }, [slug, searchParam.get("page"), categorys]);
 
   // kiểm tra xem đường dẫn con có hợp lệ hay không
   useEffect(() => {

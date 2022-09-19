@@ -8,7 +8,14 @@ import Form from "./Component/public/form";
 import LoginPage from "./Component/public/form/login/login";
 import RegisterPage from "./Component/public/form/register/register";
 import ProfilePage from "./Component/private/profile/profile";
+import DashBoard from "./Component/admin/defaultLayout/admin";
+import AdminHomePage from "./Component/admin/home/admin.home";
+import AllProduct from "./Component/admin/product/all_product/all_product";
+import AddProduct from "./Component/admin/product/add_product/add_product";
+import AllACcount from "./Component/admin/account/all_account";
+import AdminLoginPage from "./Component/admin/login/login";
 import ErrorPage from "./Component/public/404/error";
+
 const RoutesPubic = [
   {
     path: "/order/:slug",
@@ -63,4 +70,32 @@ const RoutesPrivate = [
   // },
 ];
 
-export { RoutesPubic, RoutesPrivate };
+const RoutesAdmin = [
+  {
+    path: "/admin/dashboard",
+    component: AdminHomePage,
+    layout: DashBoard,
+  },
+  {
+    path: "/admin/all-product",
+    component: AllProduct,
+    layout: DashBoard,
+  },
+  {
+    path: "/admin/add-product",
+    component: AddProduct,
+    layout: DashBoard,
+  },
+  {
+    path: "/admin/all-account",
+    component: AllACcount,
+    layout: DashBoard,
+  },
+  {
+    path: "/admin/login",
+    component: AdminLoginPage,
+    layout: null,
+  },
+];
+
+export { RoutesPubic, RoutesPrivate, RoutesAdmin };

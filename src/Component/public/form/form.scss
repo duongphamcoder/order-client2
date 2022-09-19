@@ -50,6 +50,9 @@
         transition: all 0.2s linear;
         font-size: 12px;
         color: #767676;
+        &.error {
+          color: red;
+        }
       }
 
       input {

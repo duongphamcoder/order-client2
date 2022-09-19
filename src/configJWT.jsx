@@ -18,7 +18,7 @@ const axiosClient = axios.create({
  */
 axiosAuthorization.interceptors.request.use(async (config) => {
   try {
-    const _token = localStorage.getItem("token");
+    const _token = localStorage.getItem(process.env.REACT_APP_KEY_TOKEN);
     config.headers.Authorization = "Bear " + (_token ? _token : "");
     if (_token) {
       const { _id, exp } = jwt_decode(_token);
@@ -27,7 +27,7 @@ axiosAuthorization.interceptors.request.use(async (config) => {
         const { token } = await axiosClient.get(
           `${process.env.REACT_APP_URL_SERVER}/account/refreshToken?_id=${_id}`
         );
-        localStorage.setItem("token", token);
+        localStorage.setItem(process.env.REACT_APP_KEY_TOKEN, token);
         config.headers.Authorization = "Bear " + token;
       }
     }

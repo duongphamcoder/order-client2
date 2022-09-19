@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { axiosClient } from "../../../../configJWT";
+import { Input, Button } from "../../../default/ItemComponent/itemForm";
+
+import handle from "../../../../handle";
+import swal from "sweetalert";
 
 // chưa check điều kiện sai cho tất cả các trường
 function RegisterPage() {
@@ -9,25 +12,23 @@ function RegisterPage() {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
+
+  const refUsername = useRef();
   const navigate = useNavigate();
   const handleRegister = async () => {
-    try {
-      const respone = await axiosClient.post(
-        `${process.env.REACT_APP_URL_SERVER}/account/create`,
-        {
-          username,
-          password,
-          email,
-          address,
-          phoneNumber,
-        }
-      );
-      console.log(respone);
-      if (respone.error === false) {
-        navigate("/form/login", { replace: true });
-      }
-    } catch (error) {
-      console.log(error);
+    const { emptyField, error, isAccount, message } = await handle.handeAccount(
+      { username, password, email, phoneNumber, address },
+      "CREATE"
+    );
+    if (error === true) {
+      swal({
+        text: message,
+        icon: "error",
+        buttons: false,
+        timer: 1200,
+      });
+    } else if (error === false) {
+      navigate("/form/login", { replace: true });
     }
   };
 
@@ -38,71 +39,37 @@ function RegisterPage() {
       </div>
 
       <div className="form_input">
-        <div className="form_input--item">
-          <label htmlFor="username">
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-            />
-            <span className={`${username && "forcus"}`}>username</span>
-          </label>
-        </div>
-        <div className="form_input--item">
-          <label htmlFor="password">
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
-            <span className={`${password && "forcus"}`}>password</span>
-          </label>
-        </div>
-        <div className="form_input--item">
-          <label htmlFor="email">
-            <input
-              type="text"
-              id="address"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-            <span className={`${email && "forcus"}`}>email</span>
-          </label>
-        </div>
-        <div className="form_input--item">
-          <label htmlFor="address">
-            <input
-              type="text"
-              id="address"
-              value={address}
-              onChange={(e) => {
-                setAddress(e.target.value);
-              }}
-            />
-            <span className={`${address && "forcus"}`}>address</span>
-          </label>
-        </div>
-        <div className="form_input--item">
-          <label htmlFor="phone_number">
-            <input
-              type="text"
-              id="phone_number"
-              value={phoneNumber}
-              onChange={(e) => {
-                setPhoneNumber(e.target.value);
-              }}
-            />
-            <span className={`${phoneNumber && "forcus"}`}>phone number</span>
-          </label>
-        </div>
+        <Input
+          type={"text"}
+          label={"username"}
+          value={username}
+          onChange={setUsername}
+          uref={refUsername}
+        />
+        <Input
+          type={"password"}
+          label={"password"}
+          value={password}
+          onChange={setPassword}
+        />
+        <Input
+          type={"text"}
+          label={"email"}
+          value={email}
+          onChange={setEmail}
+        />
+        <Input
+          type={"text"}
+          label={"address"}
+          value={address}
+          onChange={setAddress}
+        />
+        <Input
+          type={"text"}
+          label={"phone number"}
+          value={phoneNumber}
+          onChange={setPhoneNumber}
+        />
       </div>
       <div className="form_other">
         <div className="form_other--item">
@@ -112,9 +79,7 @@ function RegisterPage() {
           <Link to="/form/login">login to website.</Link>
         </div>
       </div>
-      <div className="form_submit">
-        <button onClick={handleRegister}>Register</button>
-      </div>
+      <Button text={"register"} handle={handleRegister} />
     </div>
   );
 }

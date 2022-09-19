@@ -1,6 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { axiosClient } from "../../../../configJWT";
+import { Input, Button } from "../../../default/ItemComponent/itemForm";
+
+import handle from "../../../../handle";
+import swal from "sweetalert";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -8,16 +11,19 @@ function LoginPage() {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    const { error, token } = await axiosClient.post(
-      `${process.env.REACT_APP_URL_SERVER}/account/login`,
-      {
-        username,
-        password,
-        role: "USER_ROLE",
-      }
+    const { error, message } = await handle.handeAccount(
+      { username, password },
+      "LOGIN"
     );
-    if (!error) {
-      localStorage.setItem("token", token);
+    if (error === true) {
+      swal({
+        text: message,
+        icon: "error",
+        buttons: false,
+        timer: 1200,
+      });
+    } else if (error === false) {
+      console.log("12323");
       window.location.replace("/");
     }
   };
@@ -33,32 +39,18 @@ function LoginPage() {
         <i>Please fill out the information in the box below.</i>
       </div>
       <div className="form_input">
-        <div className="form_input--item">
-          <label htmlFor="username">
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-            />
-            <span className={`${username && "forcus"}`}>username</span>
-          </label>
-        </div>
-        <div className="form_input--item">
-          <label htmlFor="password">
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
-            <span className={`${password && "forcus"}`}>password</span>
-          </label>
-        </div>
+        <Input
+          type={"text"}
+          label={"username"}
+          value={username}
+          onChange={setUsername}
+        />
+        <Input
+          type={"password"}
+          label={"password"}
+          value={password}
+          onChange={setPassword}
+        />
       </div>
       <div className="form_other">
         <div className="form_other--item">
@@ -68,9 +60,7 @@ function LoginPage() {
           <Link to="#">forgot password?</Link>
         </div>
       </div>
-      <div className="form_submit">
-        <button onClick={handleLogin}>Login</button>
-      </div>
+      <Button text={"Login"} handle={handleLogin}></Button>
       <div className="login_orther">
         <div className="login_orther--title">
           <p>or sign in with</p>

@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap");
+
+:root {
+  --height-header-admin: 80px;
+  --width-nav-admin: 250px;
+  --color-admin-main: #2a2b36;
+  --color-admin-main-opacity: #494a52;
+  --color-admin-text: #e5e5e6;
+  --color-admin-content: #181924;
+  --color-admin-violet: #332a96;
+  --color-admin-blue: #4386c2;
+  --color-admin-yellow: #df9927;
+  --color-admin-red: #c65656;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+#dashboard-wrapper {
+  color: var(--color-admin-text);
+}
+
+#dashboard-wrapper {
+  position: relative;
+}
+
+#admin_content-wrapper {
+  --value-pading-content: 25px;
+  padding: calc(var(--height-header-admin) + var(--value-pading-content))
+    var(--value-pading-content) var(--value-pading-content)
+    calc(var(--width-nav-admin) + var(--value-pading-content));
+  min-height: 100vh;
+  background-color: var(--color-admin-content);
+}
